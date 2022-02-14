@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>test 4</title>
+	<style>
+		.universo{
+			
+		}
+		.universo>div{
+			display: flex;
+			
+		}
+		.universo>div>div>div{
+			width: 20px;
+			height: 20px;
+			border: 1px solid grey;
+			font-size: 5px;
+		}
+		.viva{
+			background-color: grey;
+			color:  grey;
+		}
+		.muerta{
+			background-color: white;
+			color:  white;
+		}
+	</style>
+</head>
+<body>
+	<h1>Test ejercicio 4 excelencia: copiaArray()</h1>
+	<p>Este test realiza las siguientes acciones:</p>
+	
+	<ol>
+		
+		<li>Crea un array con valores aleatorios del mismo tamaño que 'universo'</li>
+		<li>Dibuja una matriz de divs 'universo' integrando la clase viva o muerta según valores del array</li>
+		<li>Espera a que se pulse una tecla. Cuando se detecta este evento...
+			<ol>
+				<li>Crea un array evolucionado a partir del array previo</li>
+				<li>Copia los datos del array evolucionado sobre el array previo</li>
+				<li>Vuelve a dibujar la matriz de divs 'universo' para que corresponda con los valores del array (ya actualizado)</li>
+			</ol>
+		</li>
+		<li>... manteniendo la tecla pulsada podemos ver como el 'universo' va evolucionando</li>
+	</ol>
+	
+	<div id="universo" class="universo"></div>
+	<br>
+	<div id="universo2" class="universo"></div>
+	<br>
+	<script src="funciones.js"></script>
+	<script>
+		//función que modifica la clase (gris o blanco) de las celdas
+		//que hay en el div universo según el contenido del array que recibe
+		function llenarUniverso(matriz, universo){
+			//recorremos el array por filas y columnas
+			for(let y=0;y<matriz.length;y++){
+				for(let x=0;x<matriz[0].length;x++){
+					if((matriz[y][x]) == true){
+						//si contiene true la clase será viva
+						var clase = "viva"
+					}else{
+						clase = "muerta"
+					}
+					var id = `${y}-${x}`
+					//seleccionamos el div que corresponde al 
+					//elemento del array y le añadimos la 
+					//clase viva o muerta segun si contiene true o false
+					document.querySelector(`#${universo} [data-id = "${id}"`).classList.add(`${clase}`);
+					//.classList.add(clase)
+				}
+			}
+		}
+	</script>
+	<script>
+		// test crearMatrizEvolucionada
+		
+		//Crea un array con valores aleatorios del mismo tamaño que 'universo'
+		matriz_previa = crearMatriz(50,25)
+
+		//Dibujamos las dos matrices de divs
+		document.getElementById("universo").innerHTML = dibujaUniverso2(matriz_previa)
+		
+		//detectamos tecla pulsada y llamamos a la función evolucionar
+		document.addEventListener('keydown', function(event){
+			console.log("pulsada")
+			//Creamos el array 'matriz_evolucionada'a partir 
+			//de la evolución de los datos del array matriz_previa
+			matriz_evolucionada = crearMatrizEvolucionada(matriz_previa)
+
+			//copiamos la el array matriz_evolucionada en el array matriz_previa
+			copiaArray(matriz_evolucionada , matriz_previa)
+			
+			//Dibujamos las dos matrices de divs
+			document.getElementById("universo").innerHTML = dibujaUniverso2(matriz_previa)
+		})
+		
+
+		
+		
+
+	</script>
+</body>
+</html>

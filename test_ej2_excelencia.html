@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#universo{
+			
+		}
+		#universo>div{
+			display: flex;
+			
+		}
+		#universo>div>div>div{
+			width: 50px;
+			height: 50px;
+			border: 1px solid;
+			
+		}
+		.viva{
+			background-color: grey;
+		}
+		.muerta{
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+	<h1>Test ejercicio 2 excelencia: evoluciona()</h1>
+	<p>Celda viva color gris, celda muerta color blanco</p>
+	<p>Celda viva color gris, celda muerta color blanco</p>
+	<p>//Una célula muerta con exactamente 3 células vecinas vivas "nace" 
+			//(es decir, al turno siguiente estará viva).</p>
+	<p>//Una célula viva con 2 o 3 células vecinas vivas sigue viva, 
+			//en otro caso muere (por "soledad" o "superpoblación").</p>
+	<div id="universo" class="universo"></div>
+	<br>
+	<script src="funciones.js"></script>
+	<script>
+		function llenarUniverso(matriz, universo){
+			//recorremos el array por filas y columnas
+			for(let y=0;y<matriz.length;y++){
+				for(let x=0;x<matriz[0].length;x++){
+					if((matriz[y][x]) == true){
+						//si contiene true la clase será viva
+						var clase = "viva"
+					}else{
+						clase = "muerta"
+					}
+					var id = `${y}-${x}`
+					//seleccionamos el div que corresponde al 
+					//elemento del array y le añadimos la 
+					//clase viva o muerta segun si contiene true o false
+					document.querySelector(`#${universo} [data-id = "${id}"`).classList.add(`${clase}`);
+					//.classList.add(clase)
+				}
+			}
+		}
+	</script>
+	<script>
+		// test evoluciona ej2
+		//Creamos el array con datos establecidos
+		var matriz_previa = [
+			[false,false,false,false,false],
+			[false,false,true,false,false],
+			[false,false,true,false,false],
+			[false,false,true,false,false],
+			[false,false,false,false,false],
+		]
+		//Dibujamos la matriz de div con la función actualizada
+		document.getElementById("universo").innerHTML = dibujaUniverso2(matriz_previa)
+		
+		
+		for(x=0;x<matriz_previa.length;x++){
+			for(y=0;y<matriz_previa[0].length;y++){
+				document.write(`matriz 2: posicion ${x} - ${y} está ${matriz_previa[x][y]}, tiene ${vecinos(matriz_previa,x,y)} vecinos y evoluciona a ${evoluciona(matriz_previa,x,y) }<br>`)
+			}
+		}
+	</script>
+</body>
+</html>

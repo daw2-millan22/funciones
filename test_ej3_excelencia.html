@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.universo{
+			
+		}
+		.universo>div{
+			display: flex;
+			
+		}
+		.universo>div>div>div{
+			width: 50px;
+			height: 50px;
+			border: 1px solid;
+			
+		}
+		.viva{
+			background-color: grey;
+		}
+		.muerta{
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+	<h1>Test ejercicio 3 excelencia: crearMatrizEvolucionada()</h1>
+	<p>Celda viva color gris, celda muerta color blanco</p>
+	<p>//Una célula muerta con exactamente 3 células vecinas vivas "nace" 
+			//(es decir, al turno siguiente estará viva).</p>
+	<p>//Una célula viva con 2 o 3 células vecinas vivas sigue viva, 
+			//en otro caso muere (por "soledad" o "superpoblación").</p>
+	<div id="universo" class="universo"></div>
+	<br>
+	<div id="universo2" class="universo"></div>
+	<br>
+	<script src="funciones.js"></script>
+	<script>
+		//función que modifica la clase (gris o blanco) de las celdas
+		//que hay en el div universo según el contenido del array que recibe
+		
+	</script>
+	<script>
+		// test crearMatrizEvolucionada
+				
+		//Creamos el array matriz_previa
+		matriz_previa = [
+			[false,false,false,false,false],
+			[false,false,true,false,false],
+			[false,false,true,false,false],
+			[false,false,true,false,false],
+			[false,false,false,false,false],
+		]
+		//Dibujamos matriz de divs con datos de matriz_previa en el div "universo"
+		document.getElementById("universo").innerHTML = dibujaUniverso2(matriz_previa)
+		
+		//Creamos el array 'matriz_evolucionada'a partir 
+		//de la evolución de los datos del array matriz_previa
+		var matriz_evolucionada = crearMatrizEvolucionada(matriz_previa)
+		
+		//Dibujamos matriz de divs con datos de matriz_previa en el div "universo"
+		document.getElementById("universo2").innerHTML = dibujaUniverso2(matriz_evolucionada)
+		
+	</script>
+</body>
+</html>

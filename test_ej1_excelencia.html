@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.universo{
+			
+		}
+		.universo>div{
+			display: flex;
+			
+		}
+		.universo>div>div>div{
+			width: 50px;
+			height: 50px;
+			border: 1px solid;
+			
+		}
+		.viva{
+			background-color: grey;
+		}
+		.muerta{
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+	<h1>Test ejercicio 1 excelencia: vecinos()...</h1>
+	<p>Celda viva color gris, celda muerta color blanco</p>
+	<div id="universo" class="universo"></div>
+	<br>
+	<script src="funciones.js"></script>
+	<script>
+		
+
+		
+	</script>
+	<script>
+		// test vecinos ejercicio 
+		//Creamos un array con los elementos 
+		var matriz_previa = crearMatriz(5,3)
+		//insertamos la matriz de divs con los valores del array 
+		document.getElementById("universo").innerHTML = dibujaUniverso2(matriz_previa)
+		
+		//Mostramos datos para verificar número de vecinos		
+		for(x=0;x<matriz_previa.length;x++){
+			for(y=0;y<matriz_previa[0].length;y++){
+				document.write(`matriz 1: posicion ${x} - ${y} está ${matriz_previa[x][y]}, tiene ${vecinos(matriz_previa,x,y)} vecinos <br>`)
+			}
+		}
+		
+	</script>
+</body>
+</html>
