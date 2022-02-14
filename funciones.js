@@ -163,34 +163,50 @@
 		}
 		function evoluciona(matriz, x , y){
 
-			var celda= vecinos(matriz ,x, y);
+			var celda=matriz[x][y];
+			var iVecinos=parseInt(vecinos(matriz, x , y));
 
-			if(celda<2 && matriz[x][y]==true){
-				matriz[x][y]=false;
+			if(celda== true && iVecinos<2){
+				celda=false;
+			}else if(celda== true && iVecinos>3){
+				celda=false;
+			}else if(celda== true && iVecinos==2 || iVecinos==3) {
+				celda=true;
+			}else if(celda == false && iVecinos==3){
+				celda=true;
 			}
-			if(celda>3  &&  matriz[x][y]==true){
-				matriz[x][y]=false;
-			}
-			if(celda==2 || celda==3  && matriz[x][y]==true){
-				matriz[x][y]=true;
-			}
-			if(celda==3  && matriz[x][y]==false){
-				matriz[x][y]=true;
-			}
-			return matriz[x][y];
-
+			return celda;
 		}
 
 		function crearMatrizEvolucionada(array){
-			var matriz= [[]];
+			console.log(array);
+			var matriz =[array.length];
 
-		
-			for(let x = 0;x <= matriz.length-1; x++){
-				for(let y = 0;y <= matriz[x].length-1; y++){
-					matriz[x][y]=evoluciona(array, x , y);
+
+			for(let x=0; x <matriz.length; x++){
+				matriz[x]= [array[0].length];
+			}
+			for(let x=0; x <matriz.length; x++){
+				for(let y=0; y <matriz.length; y++){
+					var celda=evoluciona(array, x ,y);
+					matriz[x][y]=array[x][y];
+					matriz[x][y]=celda;
 				}
 			}
+			console.log(matriz);
+
 			return matriz;
+		}
+
+		function copiaArray(arrayA , arrayB){
+			for(let i = 0;i < arrayA.length; i++){
+
+				for(let j = 0;j < arrayA[i].length; j++){
+
+					arrayB[i][j]=arrayA[i][j];					
+					
+				}
+			}
 		}
 
 		
