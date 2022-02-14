@@ -180,12 +180,15 @@
 
 		function crearMatrizEvolucionada(array){
 			console.log(array);
+			
 			var matriz =[array.length];
 
 
-			for(let x=0; x <matriz.length; x++){
-				matriz[x]= [array[0].length];
+
+			for(let x=0; x < array.length; x++){
+				matriz[x]= [array[x].length];
 			}
+			console.log(matriz);
 			for(let x=0; x <matriz.length; x++){
 				for(let y=0; y <matriz.length; y++){
 					var celda=evoluciona(array, x ,y);
